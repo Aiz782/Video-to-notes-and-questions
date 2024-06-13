@@ -1,0 +1,15 @@
+youtube_transcript_api
+streamlit
+google-generativeai
+python-dotenv
+pathlib
+youtube_dl
+pydub 
+pandas
+SpeechRecognition
+fuzzywuzzy
+FFmpeg
+sentence_transformers
+yt_dlp
+whisper
+openai
