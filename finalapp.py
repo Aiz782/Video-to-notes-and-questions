@@ -91,7 +91,7 @@ def find_matching_topic(transcript_text, threshold=0.4):
     return None
 
 # Streamlit App
-st.title("YouTube Transcript to Detailed Notes and Topic Identifier")
+st.title("YouTube Video to Detailed Notes and Topic wise Questions")
 
 youtube_link = st.text_input("Enter YouTube Video Link:")
 
