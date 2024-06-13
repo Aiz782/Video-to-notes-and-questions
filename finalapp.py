@@ -91,7 +91,7 @@ def find_matching_topic(transcript_text, threshold=0.4):
     return None
 
 # Streamlit App
-st.title("YouTube Video to Detailed Notes and Topic wise Questions")
+st.title("YouTube Video to Detailed Notes and Questions")
 
 youtube_link = st.text_input("Enter YouTube Video Link:")
 
@@ -99,7 +99,7 @@ if youtube_link:
     video_id = youtube_link.split("v=")[1]
     st.image(f"http://img.youtube.com/vi/{video_id}/0.jpg", use_column_width=True)
 
-if st.button("Get Detailed Notes and Topic"):
+if st.button("Get Detailed Notes and Questions"):
     transcript_text = extract_transcript_details(youtube_link)
     if not transcript_text:
         st.write("Transcript not found. Generating transcript from audio...")
