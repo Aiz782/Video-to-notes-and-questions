@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube video notes and questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Youtube video notes and questions</h1>
+        <form id="youtubeForm" method="get" action="/process_video">
+            <label for="youtubeLink">YouTube Video Link:</label>
+            <input type="text" id="youtubeLink" name="youtube_link" required>
+            <button type="submit">Process Video</button>
+        </form>
+        <div id="result" style="display:none;">
+            <h2>Summary</h2>
+            <p id="summary"></p>
+            <h2>Matching Topic</h2>
+            <p id="topicId"></p>
+        </div>
+        <div id="error" style="display:none; color: red;"></div>
+    </div>
+    <script>
+        document.getElementById('youtubeForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const youtubeLink = document.getElementById('youtubeLink').value;
+            const response = await fetch(`/process_video?youtube_link=${encodeURIComponent(youtubeLink)}`);
+
+            const result = await response.json();
+            if (response.ok) {
+                document.getElementById('summary').innerText = result.summary;
+                document.getElementById('topicId').innerText = `Topic ID: ${result.topicId}, ID: ${result.id}`;
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('error').style.display = 'none';
+            } else {
+                document.getElementById('error').innerText = result.error;
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('result').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
